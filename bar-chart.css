@@ -21,7 +21,7 @@
   display: none;
 }
 
-.data, 
-.y-label {
+.bar-chart-data, 
+.bar-chart-options {
   display: none;
 }
