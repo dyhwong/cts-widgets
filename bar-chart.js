@@ -26,6 +26,18 @@
         var yLabelNodes = optionsNode.getElementsByClassName("y-label");
         var yLabel = yLabelNodes.length > 0 ? yLabelNodes[0].textContent : "Y-axis";
         options["yLabel"] = yLabel;
+
+        var heightNodes = optionsNode.getElementsByClassName("height");
+        var height = heightNodes.length > 0 ? parseFloat(heightNodes[0].textContent) : 500;
+        options["height"] = height;
+
+        var widthNodes = optionsNode.getElementsByClassName("width");
+        var width = widthNodes.length > 0 ? parseFloat(widthNodes[0].textContent) : 960;
+        options["width"] = width;
+
+        var ticksNodes = optionsNode.getElementsByClassName("ticks");
+        var ticks = ticksNodes.length > 0 ? parseFloat(ticksNodes[0].textContent) : 10;
+        options["ticks"] = ticks;
         
         return options
       }
@@ -34,10 +46,11 @@
       barChart.render = function(container, data, options) {
         var container = d3.select(container);
         var yLabel = options["yLabel"];
+        var ticks = options["ticks"];
 
         var margin = {top: 20, right: 20, bottom: 30, left: 40},
-            width = 960 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
+            width = options["width"] - margin.left - margin.right,
+            height = options["height"] - margin.top - margin.bottom;
 
         var x = d3.scale.ordinal()
             .rangeRoundBands([0, width], .1);
@@ -52,7 +65,7 @@
         var yAxis = d3.svg.axis()
             .scale(y)
             .orient("left")
-            .ticks(10, "%");
+            .ticks(ticks);
 
         var svg = container.append("svg")
             .attr("width", width + margin.left + margin.right)
