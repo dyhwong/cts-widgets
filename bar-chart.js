@@ -44,7 +44,35 @@
 
       // render the widget in the container
       barChart.render = function(container, data, options) {
-        var container = d3.select(container);
+        var shadow = container.createShadowRoot();
+
+        shadow.innerHTML += "<style>" +
+          ".bar {" +
+          "fill: steelblue;" +
+          "}" +
+          ".bar:hover {" +
+          "  fill: brown;" +
+          "}" +
+          ".axis {" +
+          "  font: 10px sans-serif;" +
+          "}" +
+          ".axis path," +
+          ".axis line {" +
+          "  fill: none;" +
+          "  stroke: #000;" +
+          "  shape-rendering: crispEdges;" +
+          "}" +
+          ".x.axis path {" +
+          "  display: none;" +
+          "}" +
+          ".bar-chart-data, " +
+          ".bar-chart-options {" +
+          "  display: none;" +
+          "}" +     
+          "</style>"
+
+        var container = d3.select(shadow);
+
         var yLabel = options["yLabel"];
         var ticks = options["ticks"];
 
