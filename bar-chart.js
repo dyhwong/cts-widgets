@@ -44,11 +44,16 @@
 
       // render the widget in the container
       barChart.render = function(container, data, options) {
-        var shadow = container.createShadowRoot();
+        // create the shadow DOM if one does not already exist
+        var shadow = container.shadowRoot;
+        if (!shadow) {
+          shadow = container.createShadowRoot();
+        }
 
-        shadow.innerHTML += "<style>@import './bar-chart.css';</style>";
+        // import this widget's CSS into the shadow DOM
+        shadow.innerHTML = "<style>@import './bar-chart.css';</style>";
 
-        var container = d3.select(shadow);
+        var shadowContainer = d3.select(shadow);
 
         var yLabel = options["yLabel"];
         var ticks = options["ticks"];
@@ -72,7 +77,7 @@
             .orient("left")
             .ticks(ticks);
 
-        var svg = container.append("svg")
+        var svg = shadowContainer.append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
