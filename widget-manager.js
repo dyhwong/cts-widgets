@@ -17,17 +17,25 @@ window.onload = function() {
       if (dataNodes.length > 0 && optionsNodes.length > 0) {
         var widget = CTSWidgets[widgetName](containerNode, dataNode, optionsNode);
 
-        // initialization script
+        // widget initialization script
         var container = containerNode;
         var data = widget.parseData(dataNode);
         var options = widget.parseOptions(optionsNode);
         widget.render(container, data, options);
 
-        // var dataObserver = new MutationObserver(function(mutations) {
-        //   console.log(mutations);
-        // });
-        // dataObserver.observe(dataNode, {childList: true, attributes: true, subtree: true})
+        // initialize mutation observer for the data node
+        var dataObserver = new MutationObserver(function(mutations) {
+          data = widget.parseData(dataNode);
+          widget.render(container, data, options);
+        });
+        dataObserver.observe(dataNode, {childList: true, attributes: true, subtree: true});
 
+        // initialize mutation observer for the options node
+        var optionsObserver = new MutationObserver(function(mutations) {
+          options = widget.parseOptions(optionsNode);
+          widget.render(container, data, options);
+        });
+        optionsObserver.observe(optionsNode, {childList: true, attributes: true, subtree: true});
       }
       else {
         // if user did not define a class name for the data node
