@@ -121,7 +121,8 @@
 
     // attach the constructor to CTSWidgets
     var defaultName = "bar-chart";
-    CTSWidgets[defaultName] = BarChart;
+    var name = document.currentScript.dataset.prefix || defaultName;
+    CTSWidgets[name] = BarChart;
   }
   else {
     throw "CTS Widget Manager not found."
