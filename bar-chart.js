@@ -111,12 +111,7 @@
         }
       }
 
-      // initialization script
-      var container = containerNode;
-      var data = barChart.parseData(dataNode);
-      var options = barChart.parseOptions(optionsNode);
-
-      barChart.render(container, data, options);
+      return barChart;
     }
 
     // attach the constructor to CTSWidgets
