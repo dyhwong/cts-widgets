@@ -1,4 +1,4 @@
-@html bar-chart relative(../widgets/bar-chart/bar-chart-template.html);
+@html bar-chart relative(../../widgets/bar-chart/bar-chart-template.html);
 
 .bar-chart-data :graft bar-chart | .data-container;
 

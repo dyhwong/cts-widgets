@@ -1,0 +1,20 @@
+.bar-chart-data {
+  display: table;
+  border-collapse: collapse;
+}
+
+.bar-chart-data .row {
+  display: table-row;
+}
+
+.bar-chart-data .row span {
+  display: table-cell;
+  width: 50px;
+  border: 1px solid black;
+  padding: 0 5px;
+}
+
+.bar-chart-data,
+.bar-chart-options {
+  display: none;
+}
