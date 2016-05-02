@@ -8,8 +8,11 @@ window.onload = function() {
       var containers = Array.from(document.getElementsByClassName(widgetName)); // convert NodeList to Array
       containers.forEach(function(containerNode) {
         // determine the class names for their data and options nodes
-        var dataNodes = document.getElementsByClassName(containerNode.dataset["ctswidgetsData"]); 
-        var optionsNodes = document.getElementsByClassName(containerNode.dataset["ctswidgetsOptions"]);
+        var dataName = containerNode.dataset["ctswidgetsData"] || (widgetName + "-data");
+        var optionsName = containerNode.dataset["ctswidgetsOptions"] || (widgetName + "-options");
+
+        var dataNodes = document.getElementsByClassName(dataName);
+        var optionsNodes = document.getElementsByClassName(optionsName);;
 
         var dataNode = dataNodes[0];
         var optionsNode = optionsNodes[0];
