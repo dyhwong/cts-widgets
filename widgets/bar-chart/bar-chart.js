@@ -1,7 +1,7 @@
 (function() {
   if (window.CTSWidgets) {
     // bar chart constructor
-    var BarChart = function(containerNode, dataNode, propertiesNode) {
+    var BarChart = function() {
       var barChart = Object.create(BarChart.prototype);
 
       // parse the data from the dataNode
@@ -19,27 +19,12 @@
         return data;
       }
 
-      // parse the properties from the propertiesNode
-      barChart.parseProperties = function(propertiesNode) {
-        var properties = {};
-
-        var yLabelNodes = propertiesNode.getElementsByClassName("y-label");
-        var yLabel = yLabelNodes.length > 0 ? yLabelNodes[0].textContent : "Y-axis";
-        properties["yLabel"] = yLabel;
-
-        var heightNodes = propertiesNode.getElementsByClassName("height");
-        var height = heightNodes.length > 0 ? parseFloat(heightNodes[0].textContent) : 500;
-        properties["height"] = height;
-
-        var widthNodes = propertiesNode.getElementsByClassName("width");
-        var width = widthNodes.length > 0 ? parseFloat(widthNodes[0].textContent) : 960;
-        properties["width"] = width;
-
-        var ticksNodes = propertiesNode.getElementsByClassName("ticks");
-        var ticks = ticksNodes.length > 0 ? parseFloat(ticksNodes[0].textContent) : 10;
-        properties["ticks"] = ticks;
-        
-        return properties
+      // declare properties
+      barChart.propertiesSpec = {
+        "yLabel"    : {type: "text",  className: "y-label", defaultValue: "Y-axis"},
+        "height"    : {type: "int",   className: "height",  defaultValue: 500},
+        "width"     : {type: "int",   className: "width",   defaultValue: 960},
+        "ticks"     : {type: "int",   className: "ticks",   defaultValue: 10}
       }
 
       // render the widget in the container
