@@ -7,7 +7,7 @@ bar-chart | .data .row span:nth-child(1) :is .bar-chart-data li span:nth-child(1
 bar-chart | .data .row span:nth-child(2) :is .bar-chart-data li span:nth-child(2);
 
 
-.bar-chart-options :graft bar-chart | .options-container;
+.bar-chart-properties :graft bar-chart | .properties-container;
 
 bar-chart | .height :is .height;
 bar-chart | .width :is .width;

@@ -1,7 +1,7 @@
 (function() {
   if (window.CTSWidgets) {
     // bar chart constructor
-    var BarChart = function(containerNode, dataNode, optionsNode) {
+    var BarChart = function(containerNode, dataNode, propertiesNode) {
       var barChart = Object.create(BarChart.prototype);
 
       // parse the data from the dataNode
@@ -19,31 +19,31 @@
         return data;
       }
 
-      // parse the options from the optionsNode
-      barChart.parseOptions = function(optionsNode) {
-        var options = {};
+      // parse the properties from the propertiesNode
+      barChart.parseProperties = function(propertiesNode) {
+        var properties = {};
 
-        var yLabelNodes = optionsNode.getElementsByClassName("y-label");
+        var yLabelNodes = propertiesNode.getElementsByClassName("y-label");
         var yLabel = yLabelNodes.length > 0 ? yLabelNodes[0].textContent : "Y-axis";
-        options["yLabel"] = yLabel;
+        properties["yLabel"] = yLabel;
 
-        var heightNodes = optionsNode.getElementsByClassName("height");
+        var heightNodes = propertiesNode.getElementsByClassName("height");
         var height = heightNodes.length > 0 ? parseFloat(heightNodes[0].textContent) : 500;
-        options["height"] = height;
+        properties["height"] = height;
 
-        var widthNodes = optionsNode.getElementsByClassName("width");
+        var widthNodes = propertiesNode.getElementsByClassName("width");
         var width = widthNodes.length > 0 ? parseFloat(widthNodes[0].textContent) : 960;
-        options["width"] = width;
+        properties["width"] = width;
 
-        var ticksNodes = optionsNode.getElementsByClassName("ticks");
+        var ticksNodes = propertiesNode.getElementsByClassName("ticks");
         var ticks = ticksNodes.length > 0 ? parseFloat(ticksNodes[0].textContent) : 10;
-        options["ticks"] = ticks;
+        properties["ticks"] = ticks;
         
-        return options
+        return properties
       }
 
       // render the widget in the container
-      barChart.render = function(container, data, options) {
+      barChart.render = function(container, data, properties) {
         // create the shadow DOM if one does not already exist
         var shadow = container.shadowRoot;
         if (!shadow) {
@@ -55,12 +55,12 @@
 
         var shadowContainer = d3.select(shadow);
 
-        var yLabel = options["yLabel"];
-        var ticks = options["ticks"];
+        var yLabel = properties["yLabel"];
+        var ticks = properties["ticks"];
 
         var margin = {top: 20, right: 20, bottom: 30, left: 40},
-            width = options["width"] - margin.left - margin.right,
-            height = options["height"] - margin.top - margin.bottom;
+            width = properties["width"] - margin.left - margin.right,
+            height = properties["height"] - margin.top - margin.bottom;
 
         var x = d3.scale.ordinal()
             .rangeRoundBands([0, width], .1);
