@@ -12,19 +12,19 @@ window.onload = function() {
         var propertiesName = containerNode.dataset["ctswidgetsProperties"] || (widgetName + "-properties");
 
         var dataNodes = document.getElementsByClassName(dataName);
-        var propertiesNodes = document.getElementsByClassName(propertiesName);;
+        var propertiesNodes = document.getElementsByClassName(propertiesName);
 
         var dataNode = dataNodes[0];
         var propertiesNode = propertiesNodes[0];
 
         // check that data and properties exist before initialization
         if (dataNodes.length > 0 && propertiesNodes.length > 0) {
-          var widget = CTSWidgets[widgetName](containerNode, dataNode, propertiesNode);
+          var widget = CTSWidgets[widgetName]();
 
           // widget initialization script
           var container = containerNode;
           var data = widget.parseData(dataNode);
-          var properties = widget.parseProperties(propertiesNode);
+          var properties = parseProperties(propertiesNode, widget.propertiesSpec);
           widget.render(container, data, properties);
 
           // initialize mutation observer for the data node
@@ -36,7 +36,7 @@ window.onload = function() {
 
           // initialize mutation observer for the properties node
           var propertiesObserver = new MutationObserver(function(mutations) {
-            properties = widget.parseProperties(propertiesNode);
+            properties = parseProperties(propertiesNode, widget.propertiesSpec);
             widget.render(container, data, properties);
           });
           propertiesObserver.observe(propertiesNode, {childList: true, attributes: true, subtree: true});
@@ -56,6 +56,29 @@ window.onload = function() {
         }
       });
     }
+  }
+
+  var parseProperties = function(propertiesNode, propertiesSpec) {
+    var properties = {};
+    for (var property in propertiesSpec) {
+      var spec = propertiesSpec[property]
+      var nodes = propertiesNode.getElementsByClassName(spec.className);
+      switch (spec.type) {
+        case "int":
+          properties[property] = nodes.length > 0 ? parseInt(nodes[0].textContent) : spec.defaultValue;
+          break;
+        case "float":
+          properties[property] = nodes.length > 0 ? parseFloat(nodes[0].textContent) : spec.defaultValue;
+          break;
+        case "text":
+          properties[property] = nodes.length > 0 ? nodes[0].textContent : spec.defaultValue;
+          break;
+        default:
+          properties[property] = nodes.length > 0 ? nodes[0].textContent : spec.defaultValue;
+      }
+    }
+
+    return properties;
   }
 
   // if CTS was imported, wait for the treesheet to finish running before initing
