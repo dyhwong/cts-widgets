@@ -7,14 +7,24 @@
       // parse the data from the dataNode
       multiLineGraph.parseData = function(dataNode) {
         var data = [];
+        var seriesNames = Array.from(dataNode.getElementsByClassName("header")[0].children);
+        var series = [];
+        for (var i=1; i<seriesNames.length; i++) {
+          series.push(seriesNames[i].textContent);
+        }
+
         var rows = Array.from(dataNode.getElementsByClassName("row"));
         rows.forEach(function(row) {
           var children = row.children;
+          var values = [];
           for (var i=1; i<children.length; i++) {
             while (data.length < i) {
-              data.push([]);
+              data.push({
+                "name": series[i-1],
+                "values": []
+              });
             }
-            data[i-1].push({
+            data[i-1].values.push({
               "date": children[0].textContent,
               "value": parseFloat(children[i].textContent)
             });
@@ -58,14 +68,10 @@
             height = properties["height"] - margin.top - margin.bottom;
 
         var formatDate = d3.time.format("%d-%b-%y");
-        data = data.map(function(d, i) {
-          var series = d.map(function(dataPoint) {
+        data.forEach(function(d) {
+          d.values = d.values.map(function(dataPoint) {
             return type(dataPoint);
           });
-          return {
-            "name": properties["series"][i],
-            "values": series
-          }
         });
 
         var x = d3.time.scale()
