@@ -9,7 +9,7 @@
         var data = [];
         var rows = Array.from(dataNode.getElementsByClassName("row"));
         rows.forEach(function(row) {
-          var values = row.getElementsByTagName("span");
+          var values = row.children;
           data.push({
             "key": values[0].textContent,
             "value": parseFloat(values[1].textContent)
