@@ -73,6 +73,15 @@ window.onload = function() {
         case "text":
           properties[property] = nodes.length > 0 ? nodes[0].textContent : spec.defaultValue;
           break;
+        case "list":
+          if (nodes.length == 0) {
+            properties[property] = spec.defaultValue;
+          } else {
+            var delimiter = spec.delimiter || ",";
+            var content = nodes[0].textContent.split(delimiter);
+            properties[property] = content;
+          }
+          break;
         default:
           properties[property] = nodes.length > 0 ? nodes[0].textContent : spec.defaultValue;
       }
