@@ -36,8 +36,7 @@
       groupedBarChart.propertiesSpec = {
         "yLabel"    : {type: "text",  className: "y-label", defaultValue: "Y-axis"},
         "height"    : {type: "int",   className: "height",  defaultValue: 500},
-        "width"     : {type: "int",   className: "width",   defaultValue: 960},
-        "ticks"     : {type: "int",   className: "ticks",   defaultValue: 10},
+        "width"     : {type: "int",   className: "width",   defaultValue: 960}
       }
 
       // render the widget in the container
