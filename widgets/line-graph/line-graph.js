@@ -9,10 +9,10 @@
         var data = [];
         var rows = Array.from(dataNode.getElementsByClassName("row"));
         rows.forEach(function(row) {
-          var values = row.children;
+          var children = row.children;
           data.push({
-            "key": values[0].textContent,
-            "value": parseFloat(values[1].textContent)
+            "date": children[0].textContent,
+            "value": parseFloat(children[1].textContent)
           });
         });
 
@@ -21,9 +21,17 @@
 
       // declare properties
       lineGraph.propertiesSpec = {
-        "yLabel"    : {type: "text",  className: "y-label", defaultValue: "Y-axis"},
-        "height"    : {type: "int",   className: "height",  defaultValue: 500},
-        "width"     : {type: "int",   className: "width",   defaultValue: 960},
+        "yLabel"        : {type: "text",  className: "y-label",       defaultValue: "Y-axis"},
+        "height"        : {type: "int",   className: "height",        defaultValue: 500},
+        "width"         : {type: "int",   className: "width",         defaultValue: 960},
+        "lineColor"     : {type: "text",  className: "line-color",    defaultValue: "black"},
+        "lineWeight"    : {type: "float", className: "line-weight",   defaultValue: 1.5},
+        "fontFamily"    : {type: "text",  className: "font-family",   defaultValue: "sans-serif"},
+        "fontSize"      : {type: "int",   className: "font-size",     defaultValue: 10},
+        "marginTop"     : {type: "int",   className: "margin-top",    defaultValue: 20},
+        "marginBottom"  : {type: "int",   className: "margin-bottom", defaultValue: 20},
+        "marginLeft"    : {type: "int",   className: "margin-left",   defaultValue: 50},
+        "marginRight"   : {type: "int",   className: "margin-right",  defaultValue: 30},    
       }
 
       // render the widget in the container
@@ -44,7 +52,7 @@
           return type(d);
         });
 
-        var margin = {top: 20, right: 20, bottom: 30, left: 50},
+        var margin = {top: properties["marginTop"], right: properties["marginRight"], bottom: properties["marginBottom"], left: properties["marginLeft"]},
             width = properties["width"] - margin.left - margin.right,
             height = properties["height"] - margin.top - margin.bottom;
 
@@ -63,17 +71,19 @@
             .orient("left");
 
         var line = d3.svg.line()
-            .x(function(d) { return x(d.key); })
+            .x(function(d) { return x(d.date); })
             .y(function(d) { return y(d.value); });
 
         var svg = shadowContainer.append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
+            .style("font-size", properties["fontSize"].toString() + "px")
+            .style("font-family", properties["fontFamily"])
           .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        x.domain(d3.extent(data, function(d) { return d.key; }));
-        y.domain(d3.extent(data, function(d) { return d.value; }));
+        x.domain(d3.extent(data, function(d) { return d.date; }));
+        y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
         svg.append("g")
           .attr("class", "x axis")
@@ -93,10 +103,12 @@
         svg.append("path")
           .datum(data)
           .attr("class", "line")
-          .attr("d", line);
+          .attr("d", line)
+          .style("stroke", properties["lineColor"])
+          .style("stroke-width", properties["lineWeight"].toString() + "px");
 
         function type(d) {
-          d.key = formatDate.parse(d.key);
+          d.date = formatDate.parse(d.date);
           d.value = +d.value;
           return d;
         }

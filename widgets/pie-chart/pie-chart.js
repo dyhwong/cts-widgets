@@ -9,10 +9,10 @@
         var data = [];
         var rows = Array.from(dataNode.getElementsByClassName("row"));
         rows.forEach(function(row) {
-          var values = row.children;
+          var children = row.children;
           data.push({
-            "key": values[0].textContent,
-            "value": parseFloat(values[1].textContent)
+            "key": children[0].textContent,
+            "value": parseFloat(children[1].textContent)
           });
         });
 
@@ -21,9 +21,11 @@
 
       // declare properties
       pieChart.propertiesSpec = {
-        "height"    : {type: "int",   className: "height",    defaultValue: 500},
-        "width"     : {type: "int",   className: "width",     defaultValue: 960},
-        "textSize"  : {type: "float", className: "text-size", defaultValue: 16}
+        "height"        : {type: "int",   className: "height",        defaultValue: 500},
+        "width"         : {type: "int",   className: "width",         defaultValue: 960},
+        "fontFamily"    : {type: "text",  className: "font-family",   defaultValue: "sans-serif"},
+        "fontSize"      : {type: "int",   className: "font-size",     defaultValue: 10},
+        "colors"        : {type: "list",  className: "colors",        defaultValue: ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]}, delimiter: ",",
       }
 
       // render the widget in the container
@@ -34,9 +36,6 @@
           shadow = container.createShadowRoot();
         }
 
-        // import this widget's CSS into the shadow DOM
-        shadow.innerHTML = "<style>@import '../../widgets/pie-chart/pie-chart.css';</style>";
-
         var shadowContainer = d3.select(shadow);
 
         var width = properties["width"],
@@ -44,7 +43,7 @@
             radius = Math.min(width, height) / 2;
 
         var color = d3.scale.ordinal()
-            .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+            .range(properties["colors"]);
 
         var arc = d3.svg.arc()
             .outerRadius(radius - 10)
@@ -73,7 +72,8 @@
           .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
           .attr("dy", ".35em")
           .style("text-anchor", "middle")
-          .style("font-size", properties["textSize"].toString() + "px")
+          .style("font-size", properties["fontSize"].toString() + "px")
+          .style("font-family", properties["fontFamily"])
           .text(function(d) { return d.data.key; });
 
         function type(d) {

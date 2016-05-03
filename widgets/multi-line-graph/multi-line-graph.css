@@ -1,7 +1,3 @@
-* {
-  font: 10px sans-serif;
-}
-
 .axis path,
 .axis line {
   fill: none;
@@ -15,6 +11,4 @@
 
 .line {
   fill: none;
-  stroke: steelblue;
-  stroke-width: 1.5px;
 }

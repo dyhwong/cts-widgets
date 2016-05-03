@@ -9,10 +9,10 @@
         var data = [];
         var rows = Array.from(dataNode.getElementsByClassName("row"));
         rows.forEach(function(row) {
-          var values = row.children;
+          var children = row.children;
           data.push({
-            "key": values[0].textContent,
-            "value": parseFloat(values[1].textContent)
+            "key": children[0].textContent,
+            "value": parseFloat(children[1].textContent)
           });
         });
 
@@ -21,10 +21,17 @@
 
       // declare properties
       barChart.propertiesSpec = {
-        "yLabel"    : {type: "text",  className: "y-label", defaultValue: "Y-axis"},
-        "height"    : {type: "int",   className: "height",  defaultValue: 500},
-        "width"     : {type: "int",   className: "width",   defaultValue: 960},
-        "ticks"     : {type: "int",   className: "ticks",   defaultValue: 10}
+        "yLabel"        : {type: "text",  className: "y-label",       defaultValue: "Y-axis"},
+        "height"        : {type: "int",   className: "height",        defaultValue: 500},
+        "width"         : {type: "int",   className: "width",         defaultValue: 960},
+        "ticks"         : {type: "int",   className: "ticks",         defaultValue: 10},
+        "fillColor"     : {type: "text",  className: "fill-color",    defaultValue: "steelblue"},
+        "fontFamily"    : {type: "text",  className: "font-family",   defaultValue: "sans-serif"},
+        "fontSize"      : {type: "int",   className: "font-size",     defaultValue: 10},
+        "marginTop"     : {type: "int",   className: "margin-top",    defaultValue: 20},
+        "marginBottom"  : {type: "int",   className: "margin-bottom", defaultValue: 20},
+        "marginLeft"    : {type: "int",   className: "margin-left",   defaultValue: 50},
+        "marginRight"   : {type: "int",   className: "margin-right",  defaultValue: 30},    
       }
 
       // render the widget in the container
@@ -43,7 +50,7 @@
         var yLabel = properties["yLabel"];
         var ticks = properties["ticks"];
 
-        var margin = {top: 20, right: 20, bottom: 30, left: 40},
+        var margin = {top: properties["marginTop"], right: properties["marginRight"], bottom: properties["marginBottom"], left: properties["marginLeft"]},
             width = properties["width"] - margin.left - margin.right,
             height = properties["height"] - margin.top - margin.bottom;
 
@@ -65,7 +72,8 @@
         var svg = shadowContainer.append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
-            .append("g")
+            .style("font-family", properties["fontFamily"])
+          .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         x.domain(data.map(function(d) { return d.key; }));
@@ -93,7 +101,11 @@
             .attr("x", function(d) { return x(d.key); })
             .attr("width", x.rangeBand())
             .attr("y", function(d) { return y(d.value); })
-            .attr("height", function(d) { return height - y(d.value); });
+            .attr("height", function(d) { return height - y(d.value); })
+            .style("fill", properties["fillColor"]);
+
+        svg.selectAll(".axis")
+            .style("font-size", properties["fontSize"].toString() + "px");
 
         function type(d) {
           d.value = +d.value;

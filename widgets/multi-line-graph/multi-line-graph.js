@@ -15,8 +15,8 @@
               data.push([]);
             }
             data[i-1].push({
-              "x": children[0].textContent,
-              "y": parseFloat(children[i].textContent)
+              "date": children[0].textContent,
+              "value": parseFloat(children[i].textContent)
             });
           }
         });
@@ -26,10 +26,18 @@
 
       // declare properties
       multiLineGraph.propertiesSpec = {
-        "yLabel"    : {type: "text",  className: "y-label", defaultValue: "Y-axis"},
-        "height"    : {type: "int",   className: "height",  defaultValue: 500},
-        "width"     : {type: "int",   className: "width",   defaultValue: 960},
-        "series"    : {type: "list",  className: "series",  defaultValue: ["series1"],  delimiter: ","}
+        "yLabel"        : {type: "text",  className: "y-label",       defaultValue: "Y-axis"},
+        "height"        : {type: "int",   className: "height",        defaultValue: 500},
+        "width"         : {type: "int",   className: "width",         defaultValue: 960},
+        "series"        : {type: "list",  className: "series",        defaultValue: ["series1"],  delimiter: ","},
+        "lineColors"    : {type: "list",  className: "line-colors",   defaultValue: ["#98abc5", "#ff8c00"]}, delimiter: ",",
+        "lineWeight"    : {type: "float", className: "line-weight",   defaultValue: 1.5},
+        "fontFamily"    : {type: "text",  className: "font-family",   defaultValue: "sans-serif"},
+        "fontSize"      : {type: "int",   className: "font-size",     defaultValue: 10},
+        "marginTop"     : {type: "int",   className: "margin-top",    defaultValue: 20},
+        "marginBottom"  : {type: "int",   className: "margin-bottom", defaultValue: 30},
+        "marginLeft"    : {type: "int",   className: "margin-left",   defaultValue: 50},
+        "marginRight"   : {type: "int",   className: "margin-right",  defaultValue: 80},  
       }
 
       // render the widget in the container
@@ -45,7 +53,7 @@
 
         var shadowContainer = d3.select(shadow);
 
-        var margin = {top: 20, right: 80, bottom: 30, left: 50},
+        var margin = {top: properties["marginTop"], right: properties["marginRight"], bottom: properties["marginBottom"], left: properties["marginLeft"]},
             width = properties["width"] - margin.left - margin.right,
             height = properties["height"] - margin.top - margin.bottom;
 
@@ -78,22 +86,24 @@
 
         var line = d3.svg.line()
             .interpolate("basis")
-            .x(function(d) { return x(d.x); })
-            .y(function(d) { return y(d.y); });
+            .x(function(d) { return x(d.date); })
+            .y(function(d) { return y(d.value); });
 
         var svg = shadowContainer.append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
           .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+            .style("font-size", properties["fontSize"].toString() + "px")
+            .style("font-family", properties["fontFamily"]);
 
         color.domain(properties["series"]);
 
-        x.domain(d3.extent(data[0].values, function(d) { return d.x; }));
+        x.domain(d3.extent(data[0].values, function(d) { return d.date; }));
 
         y.domain([
-          d3.min(data, function(c) { return d3.min(c.values, function(v) { return v.y; }); }),
-          d3.max(data, function(c) { return d3.max(c.values, function(v) { return v.y; }); })
+          0,
+          d3.max(data, function(c) { return d3.max(c.values, function(v) { return v.value; }); })
         ]);
 
         svg.append("g")
@@ -119,18 +129,19 @@
         series.append("path")
             .attr("class", "line")
             .attr("d", function(d) { return line(d.values); })
-            .style("stroke", function(d) { return color(d.name); });
+            .style("stroke", function(d, i) { return properties["lineColors"][i]; })
+            .style("stroke-width", properties["lineWeight"].toString() + "px");
 
         series.append("text")
             .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
-            .attr("transform", function(d) { return "translate(" + x(d.value.x) + "," + y(d.value.y) + ")"; })
+            .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.value) + ")"; })
             .attr("x", 3)
             .attr("dy", ".35em")
             .text(function(d) { return d.name; });
 
         function type(d) {
-          d.x = formatDate.parse(d.x);
-          d.y = +d.y;
+          d.date = formatDate.parse(d.date);
+          d.value = +d.value;
           return d;
         }
       }

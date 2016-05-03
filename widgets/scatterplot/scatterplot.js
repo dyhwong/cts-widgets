@@ -9,10 +9,10 @@
         var data = [];
         var rows = Array.from(dataNode.getElementsByClassName("row"));
         rows.forEach(function(row) {
-          var values = row.children;
+          var children = row.children;
           data.push({
-            "x": parseFloat(values[0].textContent),
-            "y": parseFloat(values[1].textContent)
+            "x": parseFloat(children[0].textContent),
+            "y": parseFloat(children[1].textContent)
           });
         });
 
@@ -21,11 +21,18 @@
 
       // declare properties
       scatterplot.propertiesSpec = {
-        "xLabel"    : {type: "text",  className: "x-label", defaultValue: "X-axis"},
-        "yLabel"    : {type: "text",  className: "y-label", defaultValue: "Y-axis"},
-        "height"    : {type: "int",   className: "height",  defaultValue: 500},
-        "width"     : {type: "int",   className: "width",   defaultValue: 960},
-        "radius"    : {type: "float", className: "radius",  defaultValue: 2}
+        "xLabel"        : {type: "text",  className: "x-label",       defaultValue: "X-axis"},
+        "yLabel"        : {type: "text",  className: "y-label",       defaultValue: "Y-axis"},
+        "height"        : {type: "int",   className: "height",        defaultValue: 500},
+        "width"         : {type: "int",   className: "width",         defaultValue: 960},
+        "radius"        : {type: "float", className: "radius",        defaultValue: 2},
+        "color"         : {type: "text",  className: "color",         defaultValue: "black"},
+        "fontFamily"    : {type: "text",  className: "font-family",   defaultValue: "sans-serif"},
+        "fontSize"      : {type: "int",   className: "font-size",     defaultValue: 10},
+        "marginTop"     : {type: "int",   className: "margin-top",    defaultValue: 20},
+        "marginBottom"  : {type: "int",   className: "margin-bottom", defaultValue: 30},
+        "marginLeft"    : {type: "int",   className: "margin-left",   defaultValue: 40},
+        "marginRight"   : {type: "int",   className: "margin-right",  defaultValue: 20},  
       }
 
       // render the widget in the container
@@ -45,7 +52,7 @@
           return type(d);
         });
 
-        var margin = {top: 20, right: 20, bottom: 30, left: 40},
+        var margin = {top: properties["marginTop"], right: properties["marginRight"], bottom: properties["marginBottom"], left: properties["marginLeft"]},
             width = properties["width"] - margin.left - margin.right,
             height = properties["height"] - margin.top - margin.bottom;
 
@@ -71,8 +78,8 @@
           .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        x.domain(d3.extent(data, function(d) { return d.x; })).nice();
-        y.domain(d3.extent(data, function(d) { return d.y; })).nice();
+        x.domain([0, d3.max(data, function(d) { return d.x; })]).nice();
+        y.domain([0, d3.max(data, function(d) { return d.y; })]).nice();
 
         svg.append("g")
             .attr("class", "x axis")
@@ -103,7 +110,11 @@
             .attr("r", properties["radius"])
             .attr("cx", function(d) { return x(d.x); })
             .attr("cy", function(d) { return y(d.y); })
-            .style("fill", "black");
+            .style("fill", properties["color"]);
+
+        svg.selectAll("axis")
+            .style("font-size", properties["fontSize"].toString() + "px")
+            .style("font-family", properties["fontFamily"]);
 
         function type(d) {
           d.x = +d.x

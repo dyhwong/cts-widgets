@@ -34,9 +34,17 @@
 
       // declare properties
       groupedBarChart.propertiesSpec = {
-        "yLabel"    : {type: "text",  className: "y-label", defaultValue: "Y-axis"},
-        "height"    : {type: "int",   className: "height",  defaultValue: 500},
-        "width"     : {type: "int",   className: "width",   defaultValue: 960}
+        "yLabel"        : {type: "text",  className: "y-label",           defaultValue: "Y-axis"},
+        "height"        : {type: "int",   className: "height",            defaultValue: 500},
+        "width"         : {type: "int",   className: "width",             defaultValue: 960},
+        "colors"        : {type: "list",  className: "colors",            defaultValue: ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]}, delimiter: ",",
+        "fontFamily"    : {type: "text",  className: "font-family",       defaultValue: "sans-serif"},
+        "fontSize"      : {type: "int",   className: "font-size",         defaultValue: 10},
+        "legendFontSize": {type: "int",   className: "legend-font-size",  defaultValue: 10},
+        "marginTop"     : {type: "int",   className: "margin-top",        defaultValue: 20},
+        "marginBottom"  : {type: "int",   className: "margin-bottom",     defaultValue: 20},
+        "marginLeft"    : {type: "int",   className: "margin-left",       defaultValue: 50},
+        "marginRight"   : {type: "int",   className: "margin-right",      defaultValue: 30},   
       }
 
       // render the widget in the container
@@ -52,7 +60,7 @@
 
         var shadowContainer = d3.select(shadow);
 
-        var margin = {top: 20, right: 20, bottom: 30, left: 40},
+        var margin = {top: properties["marginTop"], right: properties["marginRight"], bottom: properties["marginBottom"], left: properties["marginLeft"]},
             width = properties["width"] - margin.left - margin.right,
             height = properties["height"] - margin.top - margin.bottom;
 
@@ -65,7 +73,7 @@
             .range([height, 0]);
 
         var color = d3.scale.ordinal()
-            .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+            .range(properties["colors"]);
 
         var xAxis = d3.svg.axis()
             .scale(x0)
@@ -80,7 +88,8 @@
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
           .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+            .style("font-family", properties["fontFamily"]);
 
         var series = data[0].values.map(function(d) { return d.series; });
 
@@ -102,6 +111,9 @@
             .attr("dy", ".71em")
             .style("text-anchor", "end")
             .text(properties["yLabel"]);
+
+        svg.selectAll(".axis")
+            .style("font-size", properties["fontSize"].toString() + "px");
 
         var group = svg.selectAll(".group")
             .data(data)
@@ -135,6 +147,8 @@
             .attr("y", 9)
             .attr("dy", ".35em")
             .style("text-anchor", "end")
+            .style("font-size", properties["legendFontSize"].toString() + "px")
+            .style("font-family", properties["fontFamily"])
             .text(function(d) { return d; });
       }
 

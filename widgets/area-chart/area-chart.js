@@ -9,10 +9,10 @@
         var data = [];
         var rows = Array.from(dataNode.getElementsByClassName("row"));
         rows.forEach(function(row) {
-          var values = row.children;
+          var children = row.children;
           data.push({
-            "date": values[0].textContent,
-            "value": parseFloat(values[1].textContent)
+            "date": children[0].textContent,
+            "value": parseFloat(children[1].textContent)
           });
         });
 
@@ -21,10 +21,16 @@
 
       // declare properties
       areaChart.propertiesSpec = {
-        "yLabel"    : {type: "text",  className: "y-label",     defaultValue: "Y-axis"},
-        "height"    : {type: "int",   className: "height",      defaultValue: 500},
-        "width"     : {type: "int",   className: "width",       defaultValue: 960},
-        "fillColor" : {type: "text",  className: "fill-color",  defaultValue: "steelblue"}
+        "yLabel"        : {type: "text",  className: "y-label",       defaultValue: "Y-axis"},
+        "height"        : {type: "int",   className: "height",        defaultValue: 500},
+        "width"         : {type: "int",   className: "width",         defaultValue: 960},
+        "fillColor"     : {type: "text",  className: "fill-color",    defaultValue: "steelblue"},
+        "fontSize"      : {type: "int",   className: "font-size",     defaultValue: 10},
+        "fontFamily"    : {type: "text",  className: "font-family",   defaultValue: "sans-serif"},
+        "marginTop"     : {type: "int",   className: "margin-top",    defaultValue: 20},
+        "marginBottom"  : {type: "int",   className: "margin-bottom", defaultValue: 20},
+        "marginLeft"    : {type: "int",   className: "margin-left",   defaultValue: 50},
+        "marginRight"   : {type: "int",   className: "margin-right",  defaultValue: 30},        
       }
 
       // render the widget in the container
@@ -45,7 +51,7 @@
           return type(d);
         });
         
-        var margin = {top: 20, right: 20, bottom: 30, left: 50},
+        var margin = {top: properties["marginTop"], right: properties["marginRight"], bottom: properties["marginBottom"], left: properties["marginLeft"]},
             width = properties["width"] - margin.left - margin.right,
             height = properties["height"] - margin.top - margin.bottom;
 
@@ -71,8 +77,10 @@
         var svg = shadowContainer.append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
+            .style("font-size", properties["fontSize"].toString() + "px")
+            .style("font-family", properties["fontFamily"])
           .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
         x.domain(d3.extent(data, function(d) { return d.date; }));
         y.domain([0, d3.max(data, function(d) { return d.value; })]);
