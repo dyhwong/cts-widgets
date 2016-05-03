@@ -56,7 +56,7 @@
         }
 
         // import this widget's CSS into the shadow DOM
-        shadow.innerHTML = "<style>@import '../../widgets/grouped-bar-chart/grouped-bar-chart.css';</style>";
+        shadow.innerHTML = "<style>@import 'http://treesheets.org/widgets/grouped-bar-chart/grouped-bar-chart.css';</style>";
 
         var shadowContainer = d3.select(shadow);
 

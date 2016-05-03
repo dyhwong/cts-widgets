@@ -49,7 +49,7 @@
         }
 
         // import this widget's CSS into the shadow DOM
-        shadow.innerHTML = "<style>@import '../../widgets/multi-line-graph/multi-line-graph.css';</style>";
+        shadow.innerHTML = "<style>@import 'http://treesheets.org/widgets/multi-line-graph/multi-line-graph.css';</style>";
 
         var shadowContainer = d3.select(shadow);
 

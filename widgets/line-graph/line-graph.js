@@ -43,7 +43,7 @@
         }
 
         // import this widget's CSS into the shadow DOM
-        shadow.innerHTML = "<style>@import '../../widgets/line-graph/line-graph.css';</style>";
+        shadow.innerHTML = "<style>@import 'http://treesheets.org/widgets/line-graph/line-graph.css';</style>";
 
         var shadowContainer = d3.select(shadow);
 

@@ -44,7 +44,7 @@
         }
 
         // import this widget's CSS into the shadow DOM
-        shadow.innerHTML = "<style>@import '../../widgets/scatterplot/scatterplot.css';</style>";
+        shadow.innerHTML = "<style>@import 'http://treesheets.org/widgets/scatterplot/scatterplot.css';</style>";
 
         var shadowContainer = d3.select(shadow);
 

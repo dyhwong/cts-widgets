@@ -42,7 +42,7 @@
         }
 
         // import this widget's CSS into the shadow DOM
-        shadow.innerHTML = "<style>@import '../../widgets/area-chart/area-chart.css';</style>";
+        shadow.innerHTML = "<style>@import 'http://treesheets.org/widgets/area-chart/area-chart.css';</style>";
 
         var shadowContainer = d3.select(shadow);
 
