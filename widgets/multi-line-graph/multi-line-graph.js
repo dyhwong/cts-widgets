@@ -102,7 +102,7 @@
             .style("font-size", properties["fontSize"].toString() + "px")
             .style("font-family", properties["fontFamily"]);
 
-        color.domain(properties["series"]);
+        color.domain(data.map(function(d) { return d.name;}));
 
         x.domain(d3.extent(data[0].values, function(d) { return d.date; }));
 
