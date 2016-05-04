@@ -32,14 +32,14 @@ window.onload = function() {
             data = widget.parseData(dataNode);
             widget.render(container, data, properties);
           });
-          dataObserver.observe(dataNode, {childList: true, attributes: true, subtree: true});
+          dataObserver.observe(dataNode, {childList: true, attributes: true, subtree: true, characterData: true});
 
           // initialize mutation observer for the properties node
           var propertiesObserver = new MutationObserver(function(mutations) {
             properties = parseProperties(propertiesNode, widget.propertiesSpec);
             widget.render(container, data, properties);
           });
-          propertiesObserver.observe(propertiesNode, {childList: true, attributes: true, subtree: true});
+          propertiesObserver.observe(propertiesNode, {childList: true, attributes: true, subtree: true, characterData: true});
         }
         else {
           // if the widget manager can't find a data node, notify the user
