@@ -112,7 +112,7 @@
             .attr("cy", function(d) { return y(d.y); })
             .style("fill", properties["color"]);
 
-        svg.selectAll("axis")
+        svg.selectAll(".axis")
             .style("font-size", properties["fontSize"].toString() + "px")
             .style("font-family", properties["fontFamily"]);
 
