@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+  <!-- load D3 -->
+  <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+  <script src="http://treesheets.org/widgets/widget-manager.js"></script>
+  <script src="http://treesheets.org/widgets/pie-chart/pie-chart.js"></script>
+
+  <style>
+    .pie-chart-data,
+    .pie-chart-properties {
+      display: none;
+    }
+
+    .snippet,
+    table {
+      margin-left: 50px;
+      width: 800px;
+    }
+
+    th {
+      background: #DFDFDF;
+      width: 200px;
+    }
+
+    td {
+      background: #FAFAFA;
+      width: 200px;
+    }
+
+    tr:nth-child(even) td {
+      background: #F1F1F1;
+    }
+
+    tr:nth-child(odd) td {
+      background: #FEFEFE;
+    }
+
+    th, td {
+      padding: 3px 10px;
+      margin: 0 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Pie Chart</h1>
+    <div class="pie-chart"></div>
+
+    <div class="pie-chart-data">
+      <div class="row"><span>Yes</span><span>60</span></div>
+      <div class="row"><span>No</span><span>40</span></div>
+    </div>
+
+    <div class="pie-chart-properties">
+      <span class="height">300</span>
+      <span class="width">450</span>
+      <span class="font-size">12</span>
+      <span class="colors">red,blue</span>
+    </div>
+
+    <div class="section">
+      <h3>Using Pie Charts</h3>
+
+      <div class="snippet">
+        <pre class="prettyprint"><code class="prettyprint">
+  &lt;head&gt;
+    &lt;!-- load the widget manager --&gt;
+    &lt;script src="http://treesheets.org/widgets/widget-manager.js"&gt;&lt;/script&gt;
+
+    &lt;!-- load the widgets --&gt;
+    &lt;script src="http://treesheets.org/widgets/pie-chart/pie-chart.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+        </code></pre>
+      </div>
+
+      <p>The default name for the pie chart widget is <code>"pie-chart"</code> so the widget manager will look for class names of <code>"pie-chart"</code>, <code>"pie-chart-data"</code>, and <code>"pie-chart-properties"</code>. Properties can be changed by adding an HTML element with the corresponding class name under the properties element.</p>
+
+      <h3>Properties</h3>
+
+      <table>
+        <tr><th>Property</th><th>Class Name</th><th>Type</th><th>Default Value</th></tr>
+        <tr><td>y-axis label</td><td>y-label</td><td>text</td><td>Y-axis</td></tr>
+        <tr><td>widget height</td><td>height</td><td>number</td><td>500</td></tr>
+        <tr><td>widget width</td><td>width</td><td>number</td><td>960</td></tr>
+        <tr><td>colors</td><td>colors</td><td>comma-separated list of colors</td><td>#98abc5,#8a89a6,#7b6888,#6b486b,#a05d56,#d0743c,#ff8c00</td></tr>
+        <tr><td>font size</td><td>font-size</td><td>number</td><td>10</td></tr>
+        <tr><td>font family</td><td>font-family</td><td>text</td><td>sans-serif</td></tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

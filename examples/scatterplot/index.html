@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+  <!-- load D3 -->
+  <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+  <script src="http://treesheets.org/widgets/widget-manager.js"></script>
+  <script src="http://treesheets.org/widgets/scatterplot/scatterplot.js"></script>
+
+  <style>
+    .scatterplot-data,
+    .scatterplot-properties {
+      display: none;
+    }
+
+    .snippet,
+    table {
+      margin-left: 50px;
+      width: 800px;
+    }
+
+    th {
+      background: #DFDFDF;
+      width: 200px;
+    }
+
+    td {
+      background: #FAFAFA;
+      width: 200px;
+    }
+
+    tr:nth-child(even) td {
+      background: #F1F1F1;
+    }
+
+    tr:nth-child(odd) td {
+      background: #FEFEFE;
+    }
+
+    th, td {
+      padding: 3px 10px;
+      margin: 0 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Scatterplot</h1>
+    <div class="scatterplot"></div>
+
+    <div class="scatterplot-data">
+      <div class="row"><span>135</span>, <span>67</span></div>
+      <div class="row"><span>120</span>, <span>69</span></div>
+      <div class="row"><span>180</span>, <span>72</span></div>
+      <div class="row"><span>100</span>, <span>51</span></div>
+      <div class="row"><span>40</span>, <span>41</span></div>
+      <div class="row"><span>50</span>, <span>42</span></div>
+      <div class="row"><span>30</span>, <span>54</span></div>
+      <div class="row"><span>42</span>, <span>21</span></div>
+      <div class="row"><span>141</span>, <span>15</span></div>
+      <div class="row"><span>24</span>, <span>35</span></div>
+      <div class="row"><span>28</span>, <span>31</span></div>
+    </div>
+
+    <div class="scatterplot-properties">
+      <span class="height">500</span>
+      <span class="width">900</span>
+      <span class="x-label">Weight (in pounds)</span>
+      <span class="y-label">Height (in inches)</span>
+      <span class="radius">3</span>
+    </div>
+
+    <div class="section">
+      <h3>Using Scatterplots</h3>
+
+      <div class="snippet">
+        <pre class="prettyprint"><code class="prettyprint">
+  &lt;head&gt;
+    &lt;!-- load the widget manager --&gt;
+    &lt;script src="http://treesheets.org/widgets/widget-manager.js"&gt;&lt;/script&gt;
+
+    &lt;!-- load the widgets --&gt;
+    &lt;script src="http://treesheets.org/widgets/scatterplot/scatterplot.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+        </code></pre>
+      </div>
+
+      <p>The default name for the scatterplot widget is <code>"scatterplot"</code> so the widget manager will look for class names of <code>"scatterplot"</code>, <code>"scatterplot-data"</code>, and <code>"scatterplot-properties"</code>. Properties can be changed by adding an HTML element with the corresponding class name under the properties element.</p>
+
+      <h3>Properties</h3>
+
+      <table>
+        <tr><th>Property</th><th>Class Name</th><th>Type</th><th>Default Value</th></tr>
+        <tr><td>x-axis label</td><td>x-label</td><td>text</td><td>X-axis</td></tr>
+        <tr><td>y-axis label</td><td>y-label</td><td>text</td><td>Y-axis</td></tr>
+        <tr><td>widget height</td><td>height</td><td>number</td><td>500</td></tr>
+        <tr><td>widget width</td><td>width</td><td>number</td><td>960</td></tr>
+        <tr><td>radius</td><td>radius</td><td>number</td><td>2</td></tr>
+        <tr><td>color</td><td>color</td><td>color</td><td>black</td></tr>
+        <tr><td>font size</td><td>font-size</td><td>number</td><td>10</td></tr>
+        <tr><td>font family</td><td>font-family</td><td>text</td><td>sans-serif</td></tr>
+        <tr><td>widget top margin</td><td>margin-top</td><td>number</td><td>20</td></tr>
+        <tr><td>widget bottom margin</td><td>margin-bottom</td><td>number</td><td>30</td></tr>
+        <tr><td>widget left margin</td><td>margin-left</td><td>number</td><td>40</td></tr>
+        <tr><td>widget right margin</td><td>margin-right</td><td>number</td><td>20</td></tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

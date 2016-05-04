@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+  <!-- load D3 -->
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+  <script src="http://treesheets.org/widgets/widget-manager.js"></script>
+  <script src="http://treesheets.org/widgets/area-chart/area-chart.js"></script>
+  <script src="http://treesheets.org/widgets/bar-chart/bar-chart.js"></script>
+  <script src="http://treesheets.org/widgets/grouped-bar-chart/grouped-bar-chart.js"></script>
+  <script src="http://treesheets.org/widgets/line-graph/line-graph.js"></script>
+  <script src="http://treesheets.org/widgets/multi-line-graph/multi-line-graph.js"></script>
+  <script src="http://treesheets.org/widgets/pie-chart/pie-chart.js"></script>
+  <script src="http://treesheets.org/widgets/scatterplot/scatterplot.js"></script>
+
+  <style>
+  .grouped-bar-chart {
+    margin-left: 50px;
+  }
+
+  .grouped-bar-chart-data, 
+  .grouped-bar-chart-properties,
+  .bar-chart-data,
+  .bar-chart-properties {
+    display: none;
+  }
+
+  .info {
+    margin: 20px 0;
+  }
+
+  .snippet {
+    padding: 10px 0;
+  }
+  </style>
+
+</head>
+
+<body>
+  <div class="container">
+    <h1>CTS Widgets Documentation</h1>
+    <div class="grouped-bar-chart"></div>
+
+    <div class="grouped-bar-chart-data">
+      <div class="header"><span>State</span><span>Under 5 Years</span><span>5 to 13 Years</span><span>14 to 17 Years</span><span>18 to 24 Years</span><span>25 to 44 Years</span><span>45 to 64 Years</span><span>65 Years and Over</span></div>
+      <div class="row"><span>CA</span><span>2704659</span><span>4499890</span><span>2159981</span><span>3853788</span><span>10604510</span><span>8819342</span><span>4114496</span></div>
+      <div class="row"><span>TX</span><span>2027307</span><span>3277946</span><span>1420518</span><span>2454721</span><span>7017731</span><span>5656528</span><span>2472223</span></div>
+      <div class="row"><span>NY</span><span>1208495</span><span>2141490</span><span>1058031</span><span>1999120</span><span>5355235</span><span>5120254</span><span>2607672</span></div>
+      <div class="row"><span>FL</span><span>1140516</span><span>1938695</span><span>925060</span><span>1607297</span><span>4782119</span><span>4746856</span><span>3187797</span></div>
+      <div class="row"><span>IL</span><span>894368</span><span>1558919</span><span>725973</span><span>1311479</span><span>3596343</span><span>3239173</span><span>1575308</span></div>
+      <div class="row"><span>PA</span><span>737462</span><span>1345341</span><span>679201</span><span>1203944</span><span>3157759</span><span>3414001</span><span>1910571</span></div>
+    </div>
+
+    <div class="grouped-bar-chart-properties">
+      <span class="height">500</span>
+      <span class="width">960</span>
+      <span class="y-label">Population</span>
+    </div>
+
+    <div class="section">
+      <h2>Overview</h2>
+      <p>CTSWidgets is a framework for adding data visualization widgets like bar charts and pie charts to a webpage without any user-written JavaScript. The goal is to be able to use these widgets anywhere and have them work reliably. Widgets also have built-in real-time updates so if the underlying dataset changes, the widget is automatically re-rendered.</p>
+
+      <p>Here is a list of supported widgets:</p>
+      <ul>
+        <li><a href="/widgets/examples/area-chart">Area Chart</a></li>
+        <li><a href="/widgets/examples/bar-chart">Bar Chart</a></li>
+        <li><a href="/widgets/examples/grouped-bar-chart">Grouped Bar Chart</a></li>
+        <li><a href="/widgets/examples/line-graph">Line Graph</a></li>
+        <li><a href="/widgets/examples/multi-line-graph">Multi Line Graph</a></li>
+        <li><a href="/widgets/examples/pie-chart">Pie Chart</a></li>
+        <li><a href="/widgets/examples/scatterplot">Scatterplot</a></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Quick Start Guide</h2>
+      <p>To use CTSWidgets, you must first include the widget manager, which handles setting up the widgets. You can import it into your HTML the same way you would any JavaScript library.</p>
+
+      <div class="snippet">
+        <pre class="prettyprint"><code class="prettyprint">
+  &lt;head&gt;
+    &lt;!-- load the widget manager --&gt;
+    &lt;script src="http://treesheets.org/widgets/widget-manager.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+        </code></pre>
+      </div>
+
+      <p>Then, you would include the files for any widgets you plan on using in your webpage. We'll be using the bar chart and pie chart widgets in the example webpage.</p>
+      <div class="snippet">
+        <pre class="prettyprint"><code class="prettyprint">
+  &lt;head&gt;
+    &lt;!-- load the widget manager --&gt;
+    &lt;script src="http://treesheets.org/widgets/widget-manager.js"&gt;&lt;/script&gt;
+
+    &lt;!-- load the widgets --&gt;
+    &lt;script src="http://treesheets.org/widgets/bar-chart/bar-chart.js"&gt;&lt;/script&gt;
+    &lt;script src="http://treesheets.org/widgets/pie-chart/pie-chart.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+        </code></pre>
+      </div>
+
+      <p>To display the visualization, the widget code needs a container, some data, and some optional properties. The widget manager will look for HTML elements with relevant class names and give them to the widget initializer. For example, the widget manager will fill an HTML element with class name <code>"bar-chart"</code> with a bar chart by pulling data from an HTML element with class name <code>"bar-chart-data"</code> and properties from an HTML element with class name <code>"bar-chart-properties"</code>.</p>
+
+      <div class="row" style="margin:0;">
+        <div class="snippet col-md-6">
+          <pre class="prettyprint"><code class="prettyprint">
+  &lt;head&gt;
+    &lt;!-- load the widget manager --&gt;
+    &lt;script src="http://treesheets.org/widgets/widget-manager.js"&gt;
+    &lt;/script&gt;
+
+    &lt;!-- load the widgets --&gt;
+    &lt;script src="http://treesheets.org/widgets/bar-chart/bar-chart.js"&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div class="bar-chart"&gt;&lt;/div&gt;
+
+    &lt;div class="bar-chart-data"&gt;
+      &lt;div class="row"&gt;&lt;span&gt;December&lt;/span&gt;&lt;span&gt;8&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="row"&gt;&lt;span&gt;January&lt;/span&gt;&lt;span&gt;15&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="row"&gt;&lt;span&gt;February&lt;/span&gt;&lt;span&gt;12&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="row"&gt;&lt;span&gt;March&lt;/span&gt;&lt;span&gt;3&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="row"&gt;&lt;span&gt;April&lt;/span&gt;&lt;span&gt;7&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="bar-chart-properties"&gt;
+      &lt;span class="height"&gt;400&lt;/span&gt;
+      &lt;span class="width"&gt;600&lt;/span&gt;
+      &lt;span class="ticks"&gt;3&lt;/span&gt;
+      &lt;span class="y-label"&gt;Snow Days&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+          </code></pre>
+        </div>
+
+        <div class="bar-chart-container col-md-6">
+          <div class="bar-chart"></div>
+
+          <div class="bar-chart-data">
+            <div class="row"><span>December</span><span>8</span></div>
+            <div class="row"><span>January</span><span>15</span></div>
+            <div class="row"><span>February</span><span>12</span></div>
+            <div class="row"><span>March</span><span>3</span></div>
+            <div class="row"><span>April</span><span>7</span></div>
+          </div> 
+
+          <div class="bar-chart-properties">
+            <span class="height">400</span>
+            <span class="width">600</span>
+            <span class="ticks">3</span>
+            <span class="y-label">Snow Days</span>
+          </div>     
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Widget Datasets</h2>
+      <p>All widgets expect the data to be in a particular structure in the HTML so the widget manager can extract the necessary data for the renderer. To give you more flexibility in writing your HTML, the widget manager also support <a href="http://treesheets.org">Cascading Tree Sheets</a>, a JavaScript library that lets you re-map the data in your HTML to the format expected by the widget. For example, if the HTML uses an unordered list instead of a div with class <code>"row"</code>, you can use CTS to marshal it into the right format.</p>
+
+      <h4>index.html</h4>
+      <div class="snippet">
+        <pre class="prettyprint"><code class="prettyprint">
+  &lt;ul class="bar-chart-data"&gt;
+    &lt;li&gt;&lt;span&gt;December&lt;/span&gt;&lt;span&gt;8&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;January&lt;/span&gt;&lt;span&gt;15&lt;/span&gt;&lt;/li&gt;
+    ...
+  &lt;/ul&gt;
+        </code></pre>
+      </div>
+
+      <h4>index.cts</h4>
+      <div class="snippet">
+        <pre class="prettyprint"><code class="prettyprint">
+  @html bar-chart relative(template.html);
+
+  .bar-chart-data :graft bar-chart | .data-container;
+
+  bar-chart | .data :are .bar-chart-data;
+  bar-chart | .data .row span:nth-child(1) :is .bar-chart-data li span:nth-child(1);
+  bar-chart | .data .row span:nth-child(2) :is .bar-chart-data li span:nth-child(2);
+        </code></pre>
+      </div>
+
+      <h4>template.html</h4>
+      <div class="snippet">
+        <pre class="prettyprint"><code class="prettyprint">
+  &lt;div class="data-container"&gt;
+    &lt;div class="data"&gt;
+      &lt;div class="row"&gt;&lt;span&gt;Yes&lt;/span&gt;&lt;span&gt;60&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="row"&gt;&lt;span&gt;No&lt;/span&gt;&lt;span&gt;40&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+        </code></pre>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Widget Properties</h2>
+      <p>You can specify a number of properties for the widget that changes how it looks by adding an HTML element with the corresponding class name under the properties element. If you don't specify a value for property, the widget manager uses the default value found in the widget code. Each widget has its own set of configurable properties - take a look at the widget page for more details.</p>
+
+      <div class="snippet">
+        <pre class="prettyprint"><code class="prettyprint">
+    &lt;div class="bar-chart-properties"&gt;
+      &lt;span class="height"&gt;400&lt;/span&gt; &lt;!-- set the height to 400px --&gt;
+      &lt;span class="width"&gt;600&lt;/span&gt; &lt;!-- set the width to 600 --&gt;
+      &lt;span class="y-label"&gt;Snow Days&lt;/span&gt; &lt;!-- set the label of the y-axis to "Snow Days" --&gt;
+    &lt;/div&gt;
+        </code></pre>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Widget Prefixes</h2>
+      <p>Although each widget has a pre-defined default class name that the widget manager looks for to instantiate the widget, you can specify your own class names using the <code>data-prefix</code> attribute on the <code>&lt;script&gt;</code> tag that imports the widget code. For example, if you wanted to use <code>"my-bar-graph"</code> instead, your code would look something like this (but would render the same bar graph as above):</p>
+
+      <div class="snippet">
+        <pre class="prettyprint"><code class="prettyprint">
+  &lt;head&gt;
+    &lt;!-- load the widget manager --&gt;
+    &lt;script src="http://treesheets.org/widgets/widget-manager.js"&gt;
+    &lt;/script&gt;
+
+    &lt;!-- load the widgets --&gt;
+    &lt;script src="http://treesheets.org/widgets/bar-chart/bar-chart.js" data-prefix="my-bar-graph"&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div class="my-bar-graph"&gt;&lt;/div&gt;
+
+    &lt;div class="my-bar-graph-data"&gt;
+      &lt;div class="row"&gt;&lt;span&gt;December&lt;/span&gt;&lt;span&gt;8&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="row"&gt;&lt;span&gt;January&lt;/span&gt;&lt;span&gt;15&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="row"&gt;&lt;span&gt;February&lt;/span&gt;&lt;span&gt;12&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="row"&gt;&lt;span&gt;March&lt;/span&gt;&lt;span&gt;3&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="row"&gt;&lt;span&gt;April&lt;/span&gt;&lt;span&gt;7&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="my-bar-graph-properties"&gt;
+      &lt;span class="height"&gt;400&lt;/span&gt;
+      &lt;span class="width"&gt;600&lt;/span&gt;
+      &lt;span class="ticks"&gt;3&lt;/span&gt;
+      &lt;span class="y-label"&gt;Snow Days&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+        </code></pre>
+      </div>
+
+      <p>Note that the prefix also gets applied to the data and properties HTML elements - the widget manager now looks for the <code>"my-bar-graph-data"</code> and <code>"my-bar-graph-properties"</code> class names by default instead.</p>
+
+      <p>The class names for the data and properties HTML elements can also be changed by adding <code>"data-ctswidgets-data"</code> and <code>"data-ctswidgets-properties"</code> attributes to the container element.</p>
+
+      <div class="snippet">
+        <pre class="prettyprint"><code class="prettyprint">
+  &lt;div class="my-bar-graph" data-ctswidgets-data="my-data" data-ctswidgets-properties="my-properties"&gt;&lt;/div&gt;
+
+  &lt;div class="my-data"&gt;
+    &lt;div class="row"&gt;&lt;span&gt;December&lt;/span&gt;&lt;span&gt;8&lt;/span&gt;&lt;/div&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class="my-properties"&gt;
+    &lt;span class="height"&gt;400&lt;/span&gt;
+    ...
+  &lt;/div&gt;
+        </code></pre>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Multiple Widgets</h2>
+
+      <p>Each HTML element with the relevant container name will be a different instance of the widget. This makes it easy to add multiple visualizations on the same webpage.</p>
+
+      <p>You can even represent the same dataset with more than one widget. Since each container element points to a dataset, you can have two containers for different widgets point to the same dataset.</p>
+
+      <div class="snippet">
+        <pre class="prettyprint"><code class="prettyprint">
+  &lt;-- bar chart #1 --&gt;
+  &lt;div class="bar-chart" data-ctswidgets-data="my-data"&gt;&lt;/div&gt;
+
+  &lt;-- bar chart #2 --&gt;
+  &lt;div class="bar-chart" data-ctswidgets-data="my-other-data"&gt;&lt;/div&gt;
+
+  &lt;-- pie chart using the same data as bar chart #1 --&gt;
+  &lt;div class="pie-chart" data-ctswidgets-data="my-data"&gt;&lt;/div&gt;
+        </code></pre>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

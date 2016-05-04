@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+  <!-- load D3 -->
+  <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+  <script src="http://treesheets.org/widgets/widget-manager.js"></script>
+  <script src="http://treesheets.org/widgets/grouped-bar-chart/grouped-bar-chart.js"></script>
+
+  <style>
+    .grouped-bar-chart-data,
+    .grouped-bar-chart-properties {
+      display: none;
+    }
+
+    .snippet,
+    table {
+      margin-left: 50px;
+      width: 800px;
+    }
+
+    th {
+      background: #DFDFDF;
+      width: 200px;
+    }
+
+    td {
+      background: #FAFAFA;
+      width: 200px;
+    }
+
+    tr:nth-child(even) td {
+      background: #F1F1F1;
+    }
+
+    tr:nth-child(odd) td {
+      background: #FEFEFE;
+    }
+
+    th, td {
+      padding: 3px 10px;
+      margin: 0 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Grouped Bar Chart</h1>
+    <div class="grouped-bar-chart"></div>
+
+    <div class="grouped-bar-chart-data">
+      <div class="header"><span>State</span><span>Under 5 Years</span><span>5 to 13 Years</span><span>14 to 17 Years</span><span>18 to 24 Years</span><span>25 to 44 Years</span><span>45 to 64 Years</span><span>65 Years and Over</span></div>
+      <div class="row"><span>CA</span><span>2704659</span><span>4499890</span><span>2159981</span><span>3853788</span><span>10604510</span><span>8819342</span><span>4114496</span></div>
+      <div class="row"><span>TX</span><span>2027307</span><span>3277946</span><span>1420518</span><span>2454721</span><span>7017731</span><span>5656528</span><span>2472223</span></div>
+      <div class="row"><span>NY</span><span>1208495</span><span>2141490</span><span>1058031</span><span>1999120</span><span>5355235</span><span>5120254</span><span>2607672</span></div>
+      <div class="row"><span>FL</span><span>1140516</span><span>1938695</span><span>925060</span><span>1607297</span><span>4782119</span><span>4746856</span><span>3187797</span></div>
+      <div class="row"><span>IL</span><span>894368</span><span>1558919</span><span>725973</span><span>1311479</span><span>3596343</span><span>3239173</span><span>1575308</span></div>
+      <div class="row"><span>PA</span><span>737462</span><span>1345341</span><span>679201</span><span>1203944</span><span>3157759</span><span>3414001</span><span>1910571</span></div>
+    </div>
+
+    <div class="grouped-bar-chart-properties">
+      <span class="height">500</span>
+      <span class="width">900</span>
+      <span class="y-label">Population</span>
+      <span class="font-size">12</span>
+      <span class="legend-font-size">14</span>
+    </div>
+
+    <div class="section">
+      <h3>Using Grouped Bar Charts</h3>
+
+      <div class="snippet">
+        <pre class="prettyprint"><code class="prettyprint">
+  &lt;head&gt;
+    &lt;!-- load the widget manager --&gt;
+    &lt;script src="http://treesheets.org/widgets/widget-manager.js"&gt;&lt;/script&gt;
+
+    &lt;!-- load the widgets --&gt;
+    &lt;script src="http://treesheets.org/widgets/grouped-bar-chart/grouped-bar-chart.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+        </code></pre>
+      </div>
+
+      <p>The default name for the grouped bar chart widget is <code>"grouped-bar-chart"</code> so the widget manager will look for class names of <code>"grouped-bar-chart"</code>, <code>"grouped-bar-chart-data"</code>, and <code>"grouped-bar-chart-properties"</code>. Properties can be changed by adding an HTML element with the corresponding class name under the properties element.</p>
+
+      <h3>Properties</h3>
+
+      <table>
+        <tr><th>Property</th><th>Class Name</th><th>Type</th><th>Default Value</th></tr>
+        <tr><td>y-axis label</td><td>y-label</td><td>text</td><td>Y-axis</td></tr>
+        <tr><td>widget height</td><td>height</td><td>number</td><td>500</td></tr>
+        <tr><td>widget width</td><td>width</td><td>number</td><td>960</td></tr>
+        <tr><td>bar colors</td><td>colors</td><td>comma-separated list of colors</td><td>#98abc5,#8a89a6,#7b6888, #6b486b,#a05d56,#d0743c,#ff8c00</td></tr>
+        <tr><td>font size</td><td>font-size</td><td>number</td><td>10</td></tr>
+        <tr><td>font family</td><td>font-family</td><td>text</td><td>sans-serif</td></tr>
+        <tr><td>legend font size</td><td>legend-font-size</td><td>number</td><td>10</td></tr>
+        <tr><td>widget top margin</td><td>margin-top</td><td>number</td><td>20</td></tr>
+        <tr><td>widget bottom margin</td><td>margin-bottom</td><td>number</td><td>20</td></tr>
+        <tr><td>widget left margin</td><td>margin-left</td><td>number</td><td>50</td></tr>
+        <tr><td>widget right margin</td><td>margin-right</td><td>number</td><td>30</td></tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

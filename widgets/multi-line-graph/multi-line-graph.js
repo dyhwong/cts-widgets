@@ -39,7 +39,6 @@
         "yLabel"        : {type: "text",  className: "y-label",       defaultValue: "Y-axis"},
         "height"        : {type: "int",   className: "height",        defaultValue: 500},
         "width"         : {type: "int",   className: "width",         defaultValue: 960},
-        "series"        : {type: "list",  className: "series",        defaultValue: ["series1"],  delimiter: ","},
         "lineColors"    : {type: "list",  className: "line-colors",   defaultValue: ["#98abc5", "#ff8c00"]}, delimiter: ",",
         "lineWeight"    : {type: "float", className: "line-weight",   defaultValue: 1.5},
         "fontFamily"    : {type: "text",  className: "font-family",   defaultValue: "sans-serif"},

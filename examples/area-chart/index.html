@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+  <!-- load D3 -->
+  <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+  <script src="http://treesheets.org/widgets/widget-manager.js"></script>
+  <script src="http://treesheets.org/widgets/area-chart/area-chart.js"></script>
+
+  <style>
+    .area-chart-data,
+    .area-chart-properties {
+      display: none;
+    }
+
+    .snippet,
+    table {
+      margin-left: 50px;
+      width: 800px;
+    }
+
+    th {
+      background: #DFDFDF;
+      width: 200px;
+    }
+
+    td {
+      background: #FAFAFA;
+      width: 200px;
+    }
+
+    tr:nth-child(even) td {
+      background: #F1F1F1;
+    }
+
+    tr:nth-child(odd) td {
+      background: #FEFEFE;
+    }
+
+    th, td {
+      padding: 3px 10px;
+      margin: 0 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Area Chart</h1>
+    <div class="area-chart"></div>
+
+    <div class="area-chart-data">
+      <div class="row"><span>3-Jan-12</span><span>11.23</span></div>
+      <div class="row"><span>4-Jan-12</span><span>13.44</span></div>
+      <div class="row"><span>5-Jan-12</span><span>18.03</span></div>
+      <div class="row"><span>6-Jan-12</span><span>22.40</span></div>
+      <div class="row"><span>9-Jan-12</span><span>21.73</span></div>
+      <div class="row"><span>10-Jan-12</span><span>23.24</span></div>
+      <div class="row"><span>11-Jan-12</span><span>22.55</span></div>
+      <div class="row"><span>12-Jan-12</span><span>21.39</span></div>
+      <div class="row"><span>13-Jan-12</span><span>19.81</span></div>
+      <div class="row"><span>17-Jan-12</span><span>24.70</span></div>
+      <div class="row"><span>18-Jan-12</span><span>29.11</span></div>
+      <div class="row"><span>19-Jan-12</span><span>27.75</span></div>
+      <div class="row"><span>20-Jan-12</span><span>20.30</span></div>
+      <div class="row"><span>23-Jan-12</span><span>27.41</span></div>
+      <div class="row"><span>24-Jan-12</span><span>20.41</span></div>
+      <div class="row"><span>25-Jan-12</span><span>46.66</span></div>
+      <div class="row"><span>26-Jan-12</span><span>44.63</span></div>
+      <div class="row"><span>27-Jan-12</span><span>47.28</span></div>
+      <div class="row"><span>30-Jan-12</span><span>53.01</span></div>
+      <div class="row"><span>31-Jan-12</span><span>56.48</span></div>
+    </div>
+
+    <div class="area-chart-properties">
+      <span class="height">500</span>
+      <span class="width">960</span>
+      <span class="y-label">Y-axis</span>
+      <span class="fill-color">steelblue</span>
+    </div>
+
+    <div class="section">
+      <h3>Using Area Charts</h3>
+
+      <div class="snippet">
+        <pre class="prettyprint"><code class="prettyprint">
+  &lt;head&gt;
+    &lt;!-- load the widget manager --&gt;
+    &lt;script src="http://treesheets.org/widgets/widget-manager.js"&gt;&lt;/script&gt;
+
+    &lt;!-- load the widgets --&gt;
+    &lt;script src="http://treesheets.org/widgets/area-chart/area-chart.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+        </code></pre>
+      </div>
+
+      <p>The default name for the area chart widget is <code>"area-chart"</code> so the widget manager will look for class names of <code>"area-chart"</code>, <code>"area-chart-data"</code>, and <code>"area-chart-properties"</code>. Properties can be changed by adding an HTML element with the corresponding class name under the properties element.</p>
+
+      <h3>Properties</h3>
+
+      <table>
+        <tr><th>Property</th><th>Class Name</th><th>Type</th><th>Default Value</th></tr>
+        <tr><td>y-axis label</td><td>y-label</td><td>text</td><td>Y-axis</td></tr>
+        <tr><td>widget height</td><td>height</td><td>number</td><td>500</td></tr>
+        <tr><td>widget width</td><td>width</td><td>number</td><td>960</td></tr>
+        <tr><td>fill color</td><td>fill-color</td><td>color</td><td>steelblue</td></tr>
+        <tr><td>font size</td><td>font-size</td><td>number</td><td>10</td></tr>
+        <tr><td>font family</td><td>font-family</td><td>text</td><td>sans-serif</td></tr>
+        <tr><td>widget top margin</td><td>margin-top</td><td>number</td><td>20</td></tr>
+        <tr><td>widget bottom margin</td><td>margin-bottom</td><td>number</td><td>20</td></tr>
+        <tr><td>widget left margin</td><td>margin-left</td><td>number</td><td>50</td></tr>
+        <tr><td>widget right margin</td><td>margin-right</td><td>number</td><td>30</td></tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

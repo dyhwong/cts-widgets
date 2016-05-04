@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+  <!-- load D3 -->
+  <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+  <script src="http://treesheets.org/widgets/widget-manager.js"></script>
+  <script src="http://treesheets.org/widgets/multi-line-graph/multi-line-graph.js"></script>
+
+  <style>
+    .multi-line-graph-data,
+    .multi-line-graph-properties {
+      display: none;
+    }
+
+    .snippet,
+    table {
+      margin-left: 50px;
+      width: 800px;
+    }
+
+    th {
+      background: #DFDFDF;
+      width: 200px;
+    }
+
+    td {
+      background: #FAFAFA;
+      width: 200px;
+    }
+
+    tr:nth-child(even) td {
+      background: #F1F1F1;
+    }
+
+    tr:nth-child(odd) td {
+      background: #FEFEFE;
+    }
+
+    th, td {
+      padding: 3px 10px;
+      margin: 0 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Multi Line Graph</h1>
+    <div class="multi-line-graph"></div>
+
+    <div class="multi-line-graph-data">
+      <div class="header"><span>Date</span><span>Series 1</span><span>Series 2</span></div>
+      <div class="row"><span>3-Jan-12</span><span>411.23</span><span>211.11</span></div>
+      <div class="row"><span>4-Jan-12</span><span>413.44</span><span>221.11</span></div>
+      <div class="row"><span>5-Jan-12</span><span>418.03</span><span>231.11</span></div>
+      <div class="row"><span>6-Jan-12</span><span>422.40</span><span>241.11</span></div>
+      <div class="row"><span>9-Jan-12</span><span>421.73</span><span>231.11</span></div>
+      <div class="row"><span>10-Jan-12</span><span>423.24</span><span>221.11</span></div>
+      <div class="row"><span>11-Jan-12</span><span>422.55</span><span>251.11</span></div>
+      <div class="row"><span>12-Jan-12</span><span>421.39</span><span>261.11</span></div>
+      <div class="row"><span>13-Jan-12</span><span>419.81</span><span>311.11</span></div>
+      <div class="row"><span>17-Jan-12</span><span>424.70</span><span>321.11</span></div>
+      <div class="row"><span>18-Jan-12</span><span>429.11</span><span>341.11</span></div>
+      <div class="row"><span>19-Jan-12</span><span>427.75</span><span>271.11</span></div>
+      <div class="row"><span>20-Jan-12</span><span>420.30</span><span>261.11</span></div>
+      <div class="row"><span>23-Jan-12</span><span>427.41</span><span>251.11</span></div>
+      <div class="row"><span>24-Jan-12</span><span>420.41</span><span>221.11</span></div>
+      <div class="row"><span>25-Jan-12</span><span>446.66</span><span>211.11</span></div>
+      <div class="row"><span>26-Jan-12</span><span>444.63</span><span>281.11</span></div>
+      <div class="row"><span>27-Jan-12</span><span>447.28</span><span>291.11</span></div>
+      <div class="row"><span>30-Jan-12</span><span>453.01</span><span>301.11</span></div>
+      <div class="row"><span>31-Jan-12</span><span>456.48</span><span>261.11</span></div>
+    </div>
+
+    <div class="multi-line-graph-properties">
+      <span class="height">500</span>
+      <span class="width">960</span>
+      <span class="y-label">Y-axis</span>
+      <span class="series">series1,series2</span>
+    </div>
+
+    <div class="section">
+      <h3>Using Multi Line Graphs</h3>
+
+      <div class="snippet">
+        <pre class="prettyprint"><code class="prettyprint">
+  &lt;head&gt;
+    &lt;!-- load the widget manager --&gt;
+    &lt;script src="http://treesheets.org/widgets/widget-manager.js"&gt;&lt;/script&gt;
+
+    &lt;!-- load the widgets --&gt;
+    &lt;script src="http://treesheets.org/widgets/multi-line-graph/multi-line-graph.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+        </code></pre>
+      </div>
+
+      <p>The default name for the multi line graph widget is <code>"multi-line-graph"</code> so the widget manager will look for class names of <code>"multi-line-graph"</code>, <code>"multi-line-graph-data"</code>, and <code>"multi-line-graph-properties"</code>. Properties can be changed by adding an HTML element with the corresponding class name under the properties element.</p>
+
+      <h3>Properties</h3>
+
+      <table>
+        <tr><th>Property</th><th>Class Name</th><th>Type</th><th>Default Value</th></tr>
+        <tr><td>y-axis label</td><td>y-label</td><td>text</td><td>Y-axis</td></tr>
+        <tr><td>widget height</td><td>height</td><td>number</td><td>500</td></tr>
+        <tr><td>widget width</td><td>width</td><td>number</td><td>960</td></tr>
+        <tr><td>line colors</td><td>line-colors</td><td>comma-separated list of colors</td><td>#98abc5,#ff8c00</td></tr>
+        <tr><td>line weight</td><td>line-weight</td><td>number</td><td>1.5</td></tr>
+        <tr><td>font size</td><td>font-size</td><td>number</td><td>10</td></tr>
+        <tr><td>font family</td><td>font-family</td><td>text</td><td>sans-serif</td></tr>
+        <tr><td>widget top margin</td><td>margin-top</td><td>number</td><td>20</td></tr>
+        <tr><td>widget bottom margin</td><td>margin-bottom</td><td>number</td><td>20</td></tr>
+        <tr><td>widget left margin</td><td>margin-left</td><td>number</td><td>50</td></tr>
+        <tr><td>widget right margin</td><td>margin-right</td><td>number</td><td>30</td></tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
