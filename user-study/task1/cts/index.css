@@ -1,0 +1,20 @@
+.line-graph-data {
+  display: table;
+  border-collapse: collapse;
+}
+
+.line-graph-data .row {
+  display: table-row;
+}
+
+.line-graph-data .row span {
+  display: table-cell;
+  width: 100px;
+  border: 1px solid black;
+  padding: 0 5px;
+}
+
+/*.line-graph-data,*/
+.line-graph-properties {
+  display: none;
+}
