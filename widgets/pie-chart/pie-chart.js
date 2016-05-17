@@ -21,11 +21,11 @@
 
       // declare properties
       pieChart.propertiesSpec = {
-        "height"        : {type: "int",   className: "height",        defaultValue: 500},
-        "width"         : {type: "int",   className: "width",         defaultValue: 960},
-        "fontFamily"    : {type: "text",  className: "font-family",   defaultValue: "sans-serif"},
-        "fontSize"      : {type: "int",   className: "font-size",     defaultValue: 10},
-        "colors"        : {type: "list",  className: "colors",        defaultValue: ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]}, delimiter: ",",
+        "height"        : {type: "int",   defaultValue: 500},
+        "width"         : {type: "int",   defaultValue: 960},
+        "fontFamily"    : {type: "text",  defaultValue: "sans-serif"},
+        "fontSize"      : {type: "int",   defaultValue: 10},
+        "colors"        : {type: "list",  defaultValue: ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]}, delimiter: ",",
       }
 
       // render the widget in the container

@@ -21,17 +21,17 @@
 
       // declare properties
       barChart.propertiesSpec = {
-        "yLabel"        : {type: "text",  className: "y-label",       defaultValue: "Y-axis"},
-        "height"        : {type: "int",   className: "height",        defaultValue: 500},
-        "width"         : {type: "int",   className: "width",         defaultValue: 960},
-        "ticks"         : {type: "int",   className: "ticks",         defaultValue: 10},
-        "fillColor"     : {type: "text",  className: "fill-color",    defaultValue: "steelblue"},
-        "fontFamily"    : {type: "text",  className: "font-family",   defaultValue: "sans-serif"},
-        "fontSize"      : {type: "int",   className: "font-size",     defaultValue: 10},
-        "marginTop"     : {type: "int",   className: "margin-top",    defaultValue: 20},
-        "marginBottom"  : {type: "int",   className: "margin-bottom", defaultValue: 20},
-        "marginLeft"    : {type: "int",   className: "margin-left",   defaultValue: 50},
-        "marginRight"   : {type: "int",   className: "margin-right",  defaultValue: 30},    
+        "yLabel"        : {type: "text",    defaultValue: "Y-axis"},
+        "height"        : {type: "int",     defaultValue: 500},
+        "width"         : {type: "int",     defaultValue: 960},
+        "ticks"         : {type: "int",     defaultValue: 10},
+        "fillColor"     : {type: "color",   defaultValue: "steelblue"},
+        "fontFamily"    : {type: "text",    defaultValue: "sans-serif"},
+        "fontSize"      : {type: "int",     defaultValue: 10},
+        "marginTop"     : {type: "int",     defaultValue: 20},
+        "marginBottom"  : {type: "int",     defaultValue: 20},
+        "marginLeft"    : {type: "int",     defaultValue: 50},
+        "marginRight"   : {type: "int",     defaultValue: 30},    
       }
 
       // render the widget in the container

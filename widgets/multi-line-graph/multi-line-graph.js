@@ -36,17 +36,17 @@
 
       // declare properties
       multiLineGraph.propertiesSpec = {
-        "yLabel"        : {type: "text",  className: "y-label",       defaultValue: "Y-axis"},
-        "height"        : {type: "int",   className: "height",        defaultValue: 500},
-        "width"         : {type: "int",   className: "width",         defaultValue: 960},
-        "lineColors"    : {type: "list",  className: "line-colors",   defaultValue: ["#98abc5", "#ff8c00"]}, delimiter: ",",
-        "lineWeight"    : {type: "float", className: "line-weight",   defaultValue: 1.5},
-        "fontFamily"    : {type: "text",  className: "font-family",   defaultValue: "sans-serif"},
-        "fontSize"      : {type: "int",   className: "font-size",     defaultValue: 10},
-        "marginTop"     : {type: "int",   className: "margin-top",    defaultValue: 20},
-        "marginBottom"  : {type: "int",   className: "margin-bottom", defaultValue: 30},
-        "marginLeft"    : {type: "int",   className: "margin-left",   defaultValue: 50},
-        "marginRight"   : {type: "int",   className: "margin-right",  defaultValue: 80},  
+        "yLabel"        : {type: "text",  defaultValue: "Y-axis"},
+        "height"        : {type: "int",   defaultValue: 500},
+        "width"         : {type: "int",   defaultValue: 960},
+        "lineColors"    : {type: "list",  defaultValue: ["#98abc5", "#ff8c00"]}, delimiter: ",",
+        "lineWeight"    : {type: "float", defaultValue: 1.5},
+        "fontFamily"    : {type: "text",  defaultValue: "sans-serif"},
+        "fontSize"      : {type: "int",   defaultValue: 10},
+        "marginTop"     : {type: "int",   defaultValue: 20},
+        "marginBottom"  : {type: "int",   defaultValue: 30},
+        "marginLeft"    : {type: "int",   defaultValue: 50},
+        "marginRight"   : {type: "int",   defaultValue: 80},  
       }
 
       // render the widget in the container

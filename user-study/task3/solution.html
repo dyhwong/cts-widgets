@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- load D3 -->
+  <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+  <link rel="stylesheet" href="./index.css">
+
+  <!-- load scripts here -->
+  <script src="http://treesheets.org/widgets/widget-manager.js"></script>
+  <script src="http://treesheets.org/widgets/bar-chart/bar-chart.js"></script>
+  <script src="http://treesheets.org/widgets/pie-chart/pie-chart.js"></script>
+</head>
+
+<body>
+  <div class="my-data" style="display: none">
+    <div class="row"><span>December</span><span>8</span></div>
+    <div class="row"><span>January</span><span>15</span></div>
+    <div class="row"><span>February</span><span>12</span></div>
+    <div class="row"><span>March</span><span>3</span></div>
+    <div class="row"><span>April</span><span>7</span></div>
+  </div>
+
+  <div class="bar-chart-properties"></div>
+  <div class="pie-chart-properties">
+    <span class="font-size">16</span>
+  </div>
+
+  <div class="bar-chart" data-ctswidgets-data="my-data"></div>
+
+  <div class="pie-chart" data-ctswidgets-data="my-data"></div>
+</body>
+</html>

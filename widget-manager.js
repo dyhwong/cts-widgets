@@ -61,33 +61,60 @@ window.onload = function() {
   var parseProperties = function(propertiesNode, propertiesSpec) {
     var properties = {};
     for (var property in propertiesSpec) {
-      var spec = propertiesSpec[property]
-      var nodes = propertiesNode.getElementsByClassName(spec.className);
-      switch (spec.type) {
-        case "int":
-          properties[property] = nodes.length > 0 ? parseInt(nodes[0].textContent) : spec.defaultValue;
-          break;
-        case "float":
-          properties[property] = nodes.length > 0 ? parseFloat(nodes[0].textContent) : spec.defaultValue;
-          break;
-        case "text":
-          properties[property] = nodes.length > 0 ? nodes[0].textContent : spec.defaultValue;
-          break;
-        case "list":
-          if (nodes.length == 0) {
-            properties[property] = spec.defaultValue;
-          } else {
-            var delimiter = spec.delimiter || ",";
-            var content = nodes[0].textContent.split(delimiter);
-            properties[property] = content;
-          }
-          break;
-        default:
-          properties[property] = nodes.length > 0 ? nodes[0].textContent : spec.defaultValue;
+      var spec = propertiesSpec[property];
+      var className = camelCaseToHyphenated(property);
+      var nodes = propertiesNode.getElementsByClassName(className);
+
+      // check if the property is required and whether any nodes for it exist
+      if (spec.required && nodes.length === 0) {
+        console.error("Could not find value for property \"" + property + "\" ")
+      }
+      else {
+        // type cast the user-submitted value
+        switch (spec.type) {
+          case "color":
+            properties[property] = nodes.length > 0 && isValidColor(nodes[0].textContent) ? nodes[0].textContent : spec.defaultValue;
+            break;
+          case "int":
+            properties[property] = nodes.length > 0 ? parseInt(nodes[0].textContent) : spec.defaultValue;
+            break;
+          case "float":
+            properties[property] = nodes.length > 0 ? parseFloat(nodes[0].textContent) : spec.defaultValue;
+            break;
+          case "text":
+            properties[property] = nodes.length > 0 ? nodes[0].textContent : spec.defaultValue;
+            break;
+          case "list":
+            if (nodes.length == 0) {
+              properties[property] = spec.defaultValue;
+            } else {
+              var delimiter = spec.delimiter || ",";
+              var content = nodes[0].textContent.split(delimiter);
+              properties[property] = content;
+            }
+            break;
+          default:
+            properties[property] = nodes.length > 0 ? nodes[0].textContent : spec.defaultValue;
+        }
       }
     }
 
     return properties;
+  }
+
+  // convert a camel case string to a hyphen-separated string
+  var camelCaseToHyphenated = function(string) {
+    return string.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+  }
+
+  // check if a string is a valid CSS color property value
+  var isValidColor = function(color) {
+    var p = document.createElement("p");
+    p.style.color = color;
+    if (p.style.color !== color) {
+      console.error("color \"" + color + "\" is not a valid color.");
+    }
+    return p.style.color === color && color.length !== 0;
   }
 
   // if CTS was imported, wait for the treesheet to finish running before initing
