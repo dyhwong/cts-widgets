@@ -21,18 +21,18 @@
 
       // declare properties
       scatterplot.propertiesSpec = {
-        "xLabel"        : {type: "text",  className: "x-label",       defaultValue: "X-axis"},
-        "yLabel"        : {type: "text",  className: "y-label",       defaultValue: "Y-axis"},
-        "height"        : {type: "int",   className: "height",        defaultValue: 500},
-        "width"         : {type: "int",   className: "width",         defaultValue: 960},
-        "radius"        : {type: "float", className: "radius",        defaultValue: 2},
-        "color"         : {type: "text",  className: "color",         defaultValue: "black"},
-        "fontFamily"    : {type: "text",  className: "font-family",   defaultValue: "sans-serif"},
-        "fontSize"      : {type: "int",   className: "font-size",     defaultValue: 10},
-        "marginTop"     : {type: "int",   className: "margin-top",    defaultValue: 20},
-        "marginBottom"  : {type: "int",   className: "margin-bottom", defaultValue: 30},
-        "marginLeft"    : {type: "int",   className: "margin-left",   defaultValue: 40},
-        "marginRight"   : {type: "int",   className: "margin-right",  defaultValue: 20},  
+        "xLabel"        : {type: "text",  defaultValue: "X-axis"},
+        "yLabel"        : {type: "text",  defaultValue: "Y-axis"},
+        "height"        : {type: "int",   defaultValue: 500},
+        "width"         : {type: "int",   defaultValue: 960},
+        "radius"        : {type: "float", defaultValue: 2},
+        "color"         : {type: "color", defaultValue: "black"},
+        "fontFamily"    : {type: "text",  defaultValue: "sans-serif"},
+        "fontSize"      : {type: "int",   defaultValue: 10},
+        "marginTop"     : {type: "int",   defaultValue: 20},
+        "marginBottom"  : {type: "int",   defaultValue: 30},
+        "marginLeft"    : {type: "int",   defaultValue: 40},
+        "marginRight"   : {type: "int",   defaultValue: 20},  
       }
 
       // render the widget in the container

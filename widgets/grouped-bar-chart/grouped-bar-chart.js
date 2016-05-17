@@ -34,17 +34,17 @@
 
       // declare properties
       groupedBarChart.propertiesSpec = {
-        "yLabel"        : {type: "text",  className: "y-label",           defaultValue: "Y-axis"},
-        "height"        : {type: "int",   className: "height",            defaultValue: 500},
-        "width"         : {type: "int",   className: "width",             defaultValue: 960},
-        "colors"        : {type: "list",  className: "colors",            defaultValue: ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]}, delimiter: ",",
-        "fontFamily"    : {type: "text",  className: "font-family",       defaultValue: "sans-serif"},
-        "fontSize"      : {type: "int",   className: "font-size",         defaultValue: 10},
-        "legendFontSize": {type: "int",   className: "legend-font-size",  defaultValue: 10},
-        "marginTop"     : {type: "int",   className: "margin-top",        defaultValue: 20},
-        "marginBottom"  : {type: "int",   className: "margin-bottom",     defaultValue: 20},
-        "marginLeft"    : {type: "int",   className: "margin-left",       defaultValue: 50},
-        "marginRight"   : {type: "int",   className: "margin-right",      defaultValue: 30},   
+        "yLabel"        : {type: "text",  defaultValue: "Y-axis"},
+        "height"        : {type: "int",   defaultValue: 500},
+        "width"         : {type: "int",   defaultValue: 960},
+        "colors"        : {type: "list",  defaultValue: ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]}, delimiter: ",",
+        "fontFamily"    : {type: "text",  defaultValue: "sans-serif"},
+        "fontSize"      : {type: "int",   defaultValue: 10},
+        "legendFontSize": {type: "int",   defaultValue: 10},
+        "marginTop"     : {type: "int",   defaultValue: 20},
+        "marginBottom"  : {type: "int",   defaultValue: 20},
+        "marginLeft"    : {type: "int",   defaultValue: 50},
+        "marginRight"   : {type: "int",   defaultValue: 30},   
       }
 
       // render the widget in the container
